@@ -24,9 +24,15 @@ void RTC_IRQHandler()
 		RTC_GetFullTime(LPC_RTC,&timeDate);
 	  lenBuf = sprintf(bufferUart,"Time: %02u:%02u:%02u\n",timeDate.HOUR,timeDate.MIN,timeDate.SEC);
 	  UART_Send(LPC_UART2,bufferUart,lenBuf,BLOCKING);
-	  lenBuf = sprintf(bufferUart,"Date: %04u:%02u:%02u\n",timeDate.YEAR,timeDate.MONTH,timeDate.DOM);
-	  UART_Send(LPC_UART2,bufferUart,lenBuf,BLOCKING);
 	}
+	else if(RTC_GetIntPending(LPC_RTC,RTC_INT_ALARM))
+	{
+		RTC_ClearIntPending(LPC_RTC,RTC_INT_ALARM);
+	  // 1 min alarm int
+		RTC_GetFullTime(LPC_RTC,&timeDate);
+    lenBuf = sprintf(bufferUart,"Date: %04u:%02u:%02u\n",timeDate.YEAR,timeDate.MONTH,timeDate.DOM);
+    UART_Send(LPC_UART2,bufferUart,lenBuf,BLOCKING);		
+	}	
 }
 
 int main()

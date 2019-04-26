@@ -40,6 +40,17 @@ void HW_Init()
 	
 	// RTC Interrupt
 	RTC_CntIncrIntConfig(LPC_RTC,RTC_TIMETYPE_SECOND,ENABLE);
+	
+	//RTC_AlarmIntConfig(LPC_RTC,RTC_TIMETYPE_MINUTE,ENABLE);
+  //RTC_SetAlarmTime(LPC_RTC,RTC_TIMETYPE_MINUTE,1);
+	
+	//
+	RTC_TIME_Type alarmTime;
+	alarmTime.SEC=10;
+	alarmTime.MIN=1;
+	RTC_AlarmIntConfig(LPC_RTC,RTC_TIMETYPE_SECOND,ENABLE);
+  RTC_AlarmIntConfig(LPC_RTC,RTC_TIMETYPE_MINUTE,ENABLE);
+	RTC_SetFullAlarmTime(LPC_RTC,&alarmTime);
 	NVIC_EnableIRQ(RTC_IRQn);
 	
 }
