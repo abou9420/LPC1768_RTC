@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\rtc_test.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\rtc_test.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Apr 26 18:17:24 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Apr 26 19:16:29 2019
 <BR><P>
-<H3>Maximum Stack Usage =        256 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        168 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; HW_Init &rArr; UART_Init &rArr; uart_set_divisors &rArr; __aeabi_uldivmod
 <P>
@@ -59,7 +59,7 @@ Function Pointers
  <LI><a href="#[c]">PendSV_Handler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
  <LI><a href="#[2d]">QEI_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
  <LI><a href="#[2b]">RIT_IRQHandler</a> from delay_rit.o(i.RIT_IRQHandler) referenced from startup_lpc17xx.o(RESET)
- <LI><a href="#[1f]">RTC_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[1f]">RTC_IRQHandler</a> from main.o(i.RTC_IRQHandler) referenced from startup_lpc17xx.o(RESET)
  <LI><a href="#[35]">Reset_Handler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
  <LI><a href="#[1b]">SPI_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
  <LI><a href="#[1c]">SSP0_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
@@ -210,7 +210,7 @@ Global Symbols
 <P><STRONG><a name="[8f]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[42]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; HW_Init &rArr; UART_Init &rArr; uart_set_divisors &rArr; __aeabi_uldivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -359,9 +359,6 @@ Global Symbols
 <P><STRONG><a name="[2d]"></a>QEI_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
 </UL>
-<P><STRONG><a name="[1f]"></a>RTC_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
-</UL>
 <P><STRONG><a name="[1b]"></a>SPI_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
 </UL>
@@ -411,7 +408,7 @@ Global Symbols
 <P><STRONG><a name="[6d]"></a>__aeabi_uldivmod</STRONG> (Thumb, 0 bytes, Stack size 48 bytes, lludivv7m.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = __aeabi_uldivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_set_divisors
+<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_set_divisors
 </UL>
 
 <P><STRONG><a name="[92]"></a>_ll_udiv</STRONG> (Thumb, 238 bytes, Stack size 48 bytes, lludivv7m.o(.text), UNUSED)
@@ -423,7 +420,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
 </UL>
 
 <P><STRONG><a name="[93]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
@@ -522,9 +519,9 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
 </UL>
 
-<P><STRONG><a name="[68]"></a>CLKPWR_ConfigPPWR</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, lpc17xx_clkpwr.o(i.CLKPWR_ConfigPPWR))
-<BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+<P><STRONG><a name="[66]"></a>CLKPWR_ConfigPPWR</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, lpc17xx_clkpwr.o(i.CLKPWR_ConfigPPWR))
+<BR><BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_Init
 </UL>
 
@@ -533,8 +530,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLKPWR_GetPCLKSEL
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_set_divisors
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_TimerConfig
+<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_set_divisors
 </UL>
 
 <P><STRONG><a name="[54]"></a>CLKPWR_GetPCLKSEL</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, lpc17xx_clkpwr.o(i.CLKPWR_GetPCLKSEL))
@@ -546,152 +542,151 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[57]"></a>Delay_RIT_ms</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, delay_rit.o(i.Delay_RIT_ms))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Delay_RIT_ms &rArr; RIT_TimerConfig &rArr; CLKPWR_GetPCLK
-</UL>
-<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_TimerConfig
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_Cmd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[5a]"></a>HW_Init</STRONG> (Thumb, 122 bytes, Stack size 24 bytes, hardwareinit.o(i.HW_Init))
+<P><STRONG><a name="[57]"></a>HW_Init</STRONG> (Thumb, 160 bytes, Stack size 24 bytes, hardwareinit.o(i.HW_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = HW_Init &rArr; UART_Init &rArr; uart_set_divisors &rArr; __aeabi_uldivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_TxCmd
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ResetClockTickCounter
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Cmd
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CalibCounterCmd
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PINSEL_ConfigPin
+<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_TxCmd
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ResetClockTickCounter
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CntIncrIntConfig
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Cmd
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CalibCounterCmd
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PINSEL_ConfigPin
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_RIT_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[62]"></a>HW_SetDateTime</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, hardwareinit.o(i.HW_SetDateTime))
+<P><STRONG><a name="[60]"></a>HW_SetDateTime</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, hardwareinit.o(i.HW_SetDateTime))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HW_SetDateTime
 </UL>
-<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetTime
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetTime
 </UL>
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5b]"></a>PINSEL_ConfigPin</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, lpc17xx_pinsel.o(i.PINSEL_ConfigPin))
+<P><STRONG><a name="[58]"></a>PINSEL_ConfigPin</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, lpc17xx_pinsel.o(i.PINSEL_ConfigPin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = PINSEL_ConfigPin &rArr; set_ResistorMode
 </UL>
-<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_ResistorMode
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_PinFunc
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_OpenDrainMode
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_ResistorMode
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_PinFunc
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_OpenDrainMode
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
-</UL>
-
-<P><STRONG><a name="[59]"></a>RIT_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, lpc17xx_rit.o(i.RIT_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_RIT_ms
+<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[67]"></a>RIT_GetIntStatus</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, lpc17xx_rit.o(i.RIT_GetIntStatus))
+<P><STRONG><a name="[65]"></a>RIT_GetIntStatus</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, lpc17xx_rit.o(i.RIT_GetIntStatus))
 <BR><BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_IRQHandler
 </UL>
 
 <P><STRONG><a name="[2b]"></a>RIT_IRQHandler</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, delay_rit.o(i.RIT_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RIT_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_GetIntStatus
+<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_GetIntStatus
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
 </UL>
 <P><STRONG><a name="[56]"></a>RIT_Init</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, lpc17xx_rit.o(i.RIT_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RIT_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLKPWR_ConfigPPWR
+<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLKPWR_ConfigPPWR
 </UL>
 <BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_RIT_Init
 </UL>
 
-<P><STRONG><a name="[58]"></a>RIT_TimerConfig</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, lpc17xx_rit.o(i.RIT_TimerConfig))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = RIT_TimerConfig &rArr; CLKPWR_GetPCLK
-</UL>
-<BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLKPWR_GetPCLK
-</UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_RIT_ms
+<P><STRONG><a name="[5e]"></a>RTC_CalibCounterCmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_CalibCounterCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[61]"></a>RTC_CalibCounterCmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_CalibCounterCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<P><STRONG><a name="[68]"></a>RTC_ClearIntPending</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_ClearIntPending))
+<BR><BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
 </UL>
 
-<P><STRONG><a name="[60]"></a>RTC_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<P><STRONG><a name="[5d]"></a>RTC_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[6c]"></a>RTC_GetFullTime</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_GetFullTime))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[5f]"></a>RTC_CntIncrIntConfig</STRONG> (Thumb, 202 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_CntIncrIntConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[5e]"></a>RTC_Init</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, lpc17xx_rtc.o(i.RTC_Init))
+<P><STRONG><a name="[69]"></a>RTC_GetFullTime</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_GetFullTime))
+<BR><BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
+</UL>
+
+<P><STRONG><a name="[67]"></a>RTC_GetIntPending</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_GetIntPending))
+<BR><BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
+</UL>
+
+<P><STRONG><a name="[1f]"></a>RTC_IRQHandler</STRONG> (Thumb, 108 bytes, Stack size 8 bytes, main.o(i.RTC_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144 + Unknown Stack Size
+<LI>Call Chain = RTC_IRQHandler &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Send
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_GetIntPending
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_GetFullTime
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ClearIntPending
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[5b]"></a>RTC_Init</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, lpc17xx_rtc.o(i.RTC_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RTC_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLKPWR_ConfigPPWR
+<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLKPWR_ConfigPPWR
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
-</UL>
-
-<P><STRONG><a name="[5f]"></a>RTC_ResetClockTickCounter</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_ResetClockTickCounter))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
-<P><STRONG><a name="[63]"></a>RTC_SetTime</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_SetTime))
-<BR><BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SetDateTime
+<P><STRONG><a name="[5c]"></a>RTC_ResetClockTickCounter</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_ResetClockTickCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+</UL>
+
+<P><STRONG><a name="[61]"></a>RTC_SetTime</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, lpc17xx_rtc.o(i.RTC_SetTime))
+<BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SetDateTime
 </UL>
 
 <P><STRONG><a name="[31]"></a>SystemInit</STRONG> (Thumb, 302 bytes, Stack size 0 bytes, system_lpc17xx.o(i.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(.text)
 </UL>
-<P><STRONG><a name="[5c]"></a>UART_Init</STRONG> (Thumb, 366 bytes, Stack size 16 bytes, lpc17xx_uart.o(i.UART_Init))
+<P><STRONG><a name="[59]"></a>UART_Init</STRONG> (Thumb, 366 bytes, Stack size 16 bytes, lpc17xx_uart.o(i.UART_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = UART_Init &rArr; uart_set_divisors &rArr; __aeabi_uldivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_set_divisors
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLKPWR_ConfigPPWR
+<BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_set_divisors
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLKPWR_ConfigPPWR
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
 <P><STRONG><a name="[6a]"></a>UART_Send</STRONG> (Thumb, 148 bytes, Stack size 36 bytes, lpc17xx_uart.o(i.UART_Send))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = UART_Send
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SendByte
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_SendByte
 </UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
 </UL>
 
-<P><STRONG><a name="[6b]"></a>UART_SendByte</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, lpc17xx_uart.o(i.UART_SendByte))
+<P><STRONG><a name="[6c]"></a>UART_SendByte</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, lpc17xx_uart.o(i.UART_SendByte))
 <BR><BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Send
 </UL>
 
-<P><STRONG><a name="[5d]"></a>UART_TxCmd</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, lpc17xx_uart.o(i.UART_TxCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
+<P><STRONG><a name="[5a]"></a>UART_TxCmd</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, lpc17xx_uart.o(i.UART_TxCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 
 <P><STRONG><a name="[4e]"></a>_is_digit</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, __printf_wp.o(i._is_digit))
 <BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__printf
 </UL>
 
-<P><STRONG><a name="[43]"></a>main</STRONG> (Thumb, 100 bytes, Stack size 88 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256 + Unknown Stack Size
-<LI>Call Chain = main &rArr; HW_Init &rArr; UART_Init &rArr; uart_set_divisors &rArr; __aeabi_uldivmod
+<P><STRONG><a name="[43]"></a>main</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = main &rArr; HW_Init &rArr; UART_Init &rArr; uart_set_divisors &rArr; __aeabi_uldivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Send
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_GetFullTime
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SetDateTime
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_RIT_ms
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SetDateTime
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -699,31 +694,31 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[66]"></a>set_OpenDrainMode</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, lpc17xx_pinsel.o(i.set_OpenDrainMode))
+<P><STRONG><a name="[64]"></a>set_OpenDrainMode</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, lpc17xx_pinsel.o(i.set_OpenDrainMode))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = set_OpenDrainMode
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PINSEL_ConfigPin
+<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PINSEL_ConfigPin
 </UL>
 
-<P><STRONG><a name="[64]"></a>set_PinFunc</STRONG> (Thumb, 60 bytes, Stack size 20 bytes, lpc17xx_pinsel.o(i.set_PinFunc))
+<P><STRONG><a name="[62]"></a>set_PinFunc</STRONG> (Thumb, 60 bytes, Stack size 20 bytes, lpc17xx_pinsel.o(i.set_PinFunc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = set_PinFunc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PINSEL_ConfigPin
+<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PINSEL_ConfigPin
 </UL>
 
-<P><STRONG><a name="[65]"></a>set_ResistorMode</STRONG> (Thumb, 60 bytes, Stack size 20 bytes, lpc17xx_pinsel.o(i.set_ResistorMode))
+<P><STRONG><a name="[63]"></a>set_ResistorMode</STRONG> (Thumb, 60 bytes, Stack size 20 bytes, lpc17xx_pinsel.o(i.set_ResistorMode))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = set_ResistorMode
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PINSEL_ConfigPin
+<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PINSEL_ConfigPin
 </UL>
 
-<P><STRONG><a name="[69]"></a>uart_set_divisors</STRONG> (Thumb, 464 bytes, Stack size 80 bytes, lpc17xx_uart.o(i.uart_set_divisors))
+<P><STRONG><a name="[6b]"></a>uart_set_divisors</STRONG> (Thumb, 464 bytes, Stack size 80 bytes, lpc17xx_uart.o(i.uart_set_divisors))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = uart_set_divisors &rArr; __aeabi_uldivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLKPWR_GetPCLK
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
+<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Init
 </UL>
 
 <P><STRONG><a name="[34]"></a>_printf_input_char</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, _printf_char_common.o(.text))
